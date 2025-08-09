@@ -33,7 +33,7 @@
 #workspaces button.active,
 #workspaces button:hover {
     margin: 0 4px;      /* odstęp poziomy między przyciskami */
-    padding: 0 8px;     /* odstęp wewnętrzny */
+    padding: 0 4px;     /* odstęp wewnętrzny */
     min-width: 20px;    /* minimalna szerokość, zapobiega skokom */
     border: none;       /* brak ramek */
     border-radius: 4px; /* opcjonalne zaokrąglenie */

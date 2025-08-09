@@ -41,8 +41,8 @@
         "modules": [
             "custom/hyde-menu",
             "cpu",            
-             "custom/cpuinfo",
-            "custom/gpuinfo",
+            //"custom/cpuinfo",
+            //"custom/gpuinfo",
             "memory",
             //"backlight",
             //"pulseaudio",
