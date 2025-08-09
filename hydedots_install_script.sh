@@ -86,7 +86,7 @@ echo "Aplikowanie konfiguracji..."
 if [ -d ~/.dotfiles ]; then
     cd ~/.dotfiles
     echo "Aplikowanie konfiguracji z .dotfiles..."
-    stow --skip-existing bat/ btop/ bin/ eza/ starship/ yazi/
+    stow --no-folding bat/ btop/ bin/ eza/ starship/ yazi/ 2>/dev/null || echo "Niektóre pliki z .dotfiles już istnieją - pomijam"
 else
     echo "Błąd: katalog ~/.dotfiles nie istnieje"
 fi
@@ -94,7 +94,7 @@ fi
 if [ -d ~/.hydedots ]; then
     cd ~/.hydedots
     echo "Aplikowanie konfiguracji z .hydedots..."
-    stow --skip-existing fastfetch/ fish/ hydelocal/ hypr/ kitty/ starship/ vscode/ waybar/
+    stow --no-folding fastfetch/ fish/ hydelocal/ hypr/ kitty/ starship/ vscode/ waybar/ 2>/dev/null || echo "Niektóre pliki z .hydedots już istnieją - pomijam"
 else
     echo "Błąd: katalog ~/.hydedots nie istnieje"
 fi
