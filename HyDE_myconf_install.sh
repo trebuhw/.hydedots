@@ -9,6 +9,7 @@ $packer -S --noconfirm --needed bat
 $packer -S --noconfirm --needed btop
 $packer -S --noconfirm --needed eza
 $packer -S --noconfirm --needed fish
+$packer -S --noconfirm --needed google-chrome
 $packer -S --noconfirm --needed konsole
 $packer -S --noconfirm --needed meld
 $packer -S --noconfirm --needed pcloud-drive
