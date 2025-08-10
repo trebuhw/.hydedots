@@ -7,7 +7,6 @@ packer="yay"
 echo "Instalacja programów..."
 $packer -S --noconfirm --needed bat
 $packer -S --noconfirm --needed btop
-$packer -S --noconfirm --needed dolphin-meld
 $packer -S --noconfirm --needed eza
 $packer -S --noconfirm --needed fish
 $packer -S --noconfirm --needed konsole
