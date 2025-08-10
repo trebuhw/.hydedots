@@ -25,7 +25,7 @@ $packer -S --noconfirm --needed vlc
 $packer -S --noconfirm --needed xorg-xrdb
 $packer -S --noconfirm --needed yazi
 $packer -S --noconfirm --needed zathura
-$packer -S --noconfirm --needed zathura-mupdf
+$packer -S --noconfirm --needed zathura-pdf-mupdf
 $packer -S --noconfirm --needed zoxide
 
 echo "Pobieranie/aktualizacja repozytoriów..."
