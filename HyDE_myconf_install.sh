@@ -80,6 +80,37 @@ cp -r ~/.hydedots/vscode/.vscode-oss ~/.vscode-oss
 cp ~/.hydedots/waybar/.config/waybar/user-style.css ~/.config/waybar/user-style.css
 
 echo "Linkowanie - stow plików konfiguracyjnych z .dotfiles"
-cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ lazynvim/ nsxiv/ starship/ Xresources/ yazi/ zathura/
+
+# Przejdź do katalogu .dotfiles
+cd ~/.dotfiles
+
+# Lista folderów do zalinkowania
+folders=("bat" "bash" "btop" "bin" "lazynvim" "nsxiv" "starship" "Xresources" "yazi" "zathura")
+
+# Sprawdź które foldery istnieją i wykonaj dla nich stow -D
+existing_folders=()
+for folder in "${folders[@]}"; do
+    if [ -d "$folder" ]; then
+        echo "Usuwanie istniejących linków dla: $folder"
+        stow -D "$folder/"
+        existing_folders+=("$folder")
+    else
+        echo "Folder $folder nie istnieje - pomijam"
+    fi
+done
+
+# Jeśli istnieją jakieś foldery, wykonaj stow dla nich
+if [ ${#existing_folders[@]} -gt 0 ]; then
+    echo "Linkowanie folderów: ${existing_folders[*]}"
+    # Dodaj / na końcu każdego folderu i wykonaj stow
+    stow_args=()
+    for folder in "${existing_folders[@]}"; do
+        stow_args+=("$folder/")
+    done
+    stow "${stow_args[@]}"
+    echo "Linkowanie zakończone pomyślnie!"
+else
+    echo "Nie znaleziono żadnych folderów do zalinkowania"
+fi
 
 echo "Instalacja zakończona!"
