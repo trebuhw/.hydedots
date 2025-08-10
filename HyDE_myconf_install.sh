@@ -42,7 +42,6 @@ echo "Usuwanie i kopiowanie plików..."
 # Dodano sprawdzenie istnienia plików przed usunięciem
 [ -f ~/.config/fastfetch/config.jsonc ] && rm ~/.config/fastfetch/config.jsonc
 [ -f ~/.config/fish/user.fish ] && rm ~/.config/fish/user.fish
-[ -f ~/.local/lib/hyde/theme.switch.sh ] && rm ~/.local/lib/hyde/theme.switch.sh
 [ -f ~/.local/share/hyde/hyprland.conf ] && rm ~/.local/share/hyde/hyprland.conf
 [ -f ~/.local/share/waybar/modules/clock.jsonc ] && rm ~/.local/share/waybar/modules/clock.jsonc
 [ -f ~/.config/hypr/keybindings.conf ] && rm ~/.config/hypr/keybindings.conf
@@ -61,21 +60,16 @@ mkdir -p ~/.config/fastfetch ~/.config/fish ~/.local/lib/hyde ~/.local/share/hyd
 
 cp ~/.hydedots/fastfetch/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 cp ~/.hydedots/fish/.config/fish/user.fish ~/.config/fish/user.fish
-cp ~/.hydedots/hydelocal/.local/lib/hyde/theme.switch.sh ~/.local/lib/hyde/theme.switch.sh
 cp ~/.hydedots/hydelocal/.local/share/hyde/hyprland.conf ~/.local/share/hyde/hyprland.conf
 cp ~/.hydedots/hydelocal/.local/share/waybar/layouts/* ~/.local/share/waybar/layouts/
-# Poprawiono ścieżkę - brakowało spacji przed ~
 cp ~/.hydedots/hydelocal/.local/share/waybar/modules/clock.jsonc ~/.local/share/waybar/modules/clock.jsonc
 cp ~/.hydedots/hypr/.config/hypr/keybindings.conf ~/.config/hypr/keybindings.conf
-# Poprawiono nazwę pliku z kity.conf na kitty.conf
 cp ~/.hydedots/kitty/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
-# Poprawiono ścieżkę - usunięto dodatkowy slash
 cp ~/.hydedots/starship/.config/starship/starship.toml ~/.config/starship/starship.toml
-# Poprawiono kopiowanie katalogu
 cp -r ~/.hydedots/vscode/.vscode-oss ~/.vscode-oss
 cp ~/.hydedots/waybar/.config/waybar/user-style.css ~/.config/waybar/user-style.css
 
 echo "Linkowanie - stow plików konfiguracyjnych z .dotfiles"
-cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ eza/ lazynvim/ starship/ yazi/
+cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ lazynvim/ starship/ yazi/
 
 echo "Instalacja zakończona!"
