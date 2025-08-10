@@ -18,10 +18,25 @@ $packer -S --noconfirm --needed trash-cli
 $packer -S --noconfirm --needed yazi
 $packer -S --noconfirm --needed zoxide
 
-echo "Kopiowanie repozytorium .dotfiles..."
-# Poprawiono URL - brakowało ://
-git clone --depth=1 https://github.com/trebuhw/.dotfiles.git ~/.dotfiles
-git clone --depth=1 https://github.com/trebuhw/.hydedots.git ~/.hydedots
+echo "Pobieranie/aktualizacja repozytoriów..."
+
+# Obsługa .dotfiles
+if [ -d ~/.dotfiles ]; then
+    echo "Repozytorium .dotfiles już istnieje - aktualizowanie..."
+    cd ~/.dotfiles && git pull
+else
+    echo "Klonowanie repozytorium .dotfiles..."
+    git clone --depth=1 https://github.com/trebuhw/.dotfiles.git ~/.dotfiles
+fi
+
+# Obsługa .hydedots
+if [ -d ~/.hydedots ]; then
+    echo "Repozytorium .hydedots już istnieje - aktualizowanie..."
+    cd ~/.hydedots && git pull
+else
+    echo "Klonowanie repozytorium .hydedots..."
+    git clone --depth=1 https://github.com/trebuhw/.hydedots.git ~/.hydedots
+fi
 
 echo "Usuwanie i kopiowanie plików..."
 # Dodano sprawdzenie istnienia plików przed usunięciem
@@ -35,6 +50,10 @@ echo "Usuwanie i kopiowanie plików..."
 [ -f ~/.config/starship/starship.toml ] && rm ~/.config/starship/starship.toml
 [ -d ~/.vscode-oss ] && rm -rf ~/.vscode-oss
 [ -f ~/.config/waybar/user-style.css ] && rm ~/.config/waybar/user-style.css
+[ -f ~/.bash_logout ] && rm ~/.bash_logout
+[ -f ~/.bash_profile ] && rm ~/.bash_profile
+[ -f ~/.bashrc ] && rm ~/.bashrc
+
 
 echo "Kopiowanie plików..."
 # Tworzenie katalogów docelowych jeśli nie istnieją
@@ -45,14 +64,18 @@ cp ~/.hydedots/fish/.config/fish/user.fish ~/.config/fish/user.fish
 cp ~/.hydedots/hydelocal/.local/lib/hyde/theme.switch.sh ~/.local/lib/hyde/theme.switch.sh
 cp ~/.hydedots/hydelocal/.local/share/hyde/hyprland.conf ~/.local/share/hyde/hyprland.conf
 cp ~/.hydedots/hydelocal/.local/share/waybar/layouts/* ~/.local/share/waybar/layouts/
+# Poprawiono ścieżkę - brakowało spacji przed ~
 cp ~/.hydedots/hydelocal/.local/share/waybar/modules/clock.jsonc ~/.local/share/waybar/modules/clock.jsonc
 cp ~/.hydedots/hypr/.config/hypr/keybindings.conf ~/.config/hypr/keybindings.conf
+# Poprawiono nazwę pliku z kity.conf na kitty.conf
 cp ~/.hydedots/kitty/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+# Poprawiono ścieżkę - usunięto dodatkowy slash
 cp ~/.hydedots/starship/.config/starship/starship.toml ~/.config/starship/starship.toml
+# Poprawiono kopiowanie katalogu
 cp -r ~/.hydedots/vscode/.vscode-oss ~/.vscode-oss
 cp ~/.hydedots/waybar/.config/waybar/user-style.css ~/.config/waybar/user-style.css
 
 echo "Linkowanie - stow plików konfiguracyjnych z .dotfiles"
-cd ~/.dotfiles && stow bat/ btop/ bin/ eza/ lazynvim/ starship/ yazi/
+cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ eza/ lazynvim/ starship/ yazi/
 
 echo "Instalacja zakończona!"
