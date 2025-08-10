@@ -11,13 +11,21 @@ $packer -S --noconfirm --needed eza
 $packer -S --noconfirm --needed fish
 $packer -S --noconfirm --needed google-chrome
 $packer -S --noconfirm --needed konsole
+$packer -S --noconfirm --needed libreoffice-fresh
+$packer -S --noconfirm --needed libreoffice-fresh-pl
 $packer -S --noconfirm --needed meld
+$packer -S --noconfirm --needed mpv
+$packer -S --noconfirm --needed nsxiv
 $packer -S --noconfirm --needed pcloud-drive
 $packer -S --noconfirm --needed starship
 $packer -S --noconfirm --needed stow
 $packer -S --noconfirm --needed tldr
 $packer -S --noconfirm --needed trash-cli
+$packer -S --noconfirm --needed vlc
+$packer -S --noconfirm --needed xorg-xrdb
 $packer -S --noconfirm --needed yazi
+$packer -S --noconfirm --needed zathura
+$packer -S --noconfirm --needed zathura-mupdf
 $packer -S --noconfirm --needed zoxide
 
 echo "Pobieranie/aktualizacja repozytoriów..."
@@ -54,6 +62,7 @@ echo "Usuwanie i kopiowanie plików..."
 [ -f ~/.bash_logout ] && rm ~/.bash_logout
 [ -f ~/.bash_profile ] && rm ~/.bash_profile
 [ -f ~/.bashrc ] && rm ~/.bashrc
+[ -f ~/.Xresources ] && rm ~/.Xresources
 
 echo "Kopiowanie plików..."
 # Tworzenie katalogów docelowych jeśli nie istnieją
@@ -71,6 +80,6 @@ cp -r ~/.hydedots/vscode/.vscode-oss ~/.vscode-oss
 cp ~/.hydedots/waybar/.config/waybar/user-style.css ~/.config/waybar/user-style.css
 
 echo "Linkowanie - stow plików konfiguracyjnych z .dotfiles"
-cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ lazynvim/ starship/ yazi/
+cd ~/.dotfiles && stow bat/ bash/ btop/ bin/ lazynvim/ nsxiv/ starship/ Xresources/ yazi/ zathura/
 
 echo "Instalacja zakończona!"
