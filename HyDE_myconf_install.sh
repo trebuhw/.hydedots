@@ -6,10 +6,12 @@ packer="yay"
 
 echo "Instalacja programów..."
 $packer -S --noconfirm --needed bat
-$packer -S --noconfirm --needed btop 
+$packer -S --noconfirm --needed btop
+$packer -S --noconfirm --needed dolphin-meld
 $packer -S --noconfirm --needed eza
 $packer -S --noconfirm --needed fish
 $packer -S --noconfirm --needed konsole
+$packer -S --noconfirm --needed meld
 $packer -S --noconfirm --needed pcloud-drive
 $packer -S --noconfirm --needed starship
 $packer -S --noconfirm --needed stow
@@ -22,20 +24,20 @@ echo "Pobieranie/aktualizacja repozytoriów..."
 
 # Obsługa .dotfiles
 if [ -d ~/.dotfiles ]; then
-    echo "Repozytorium .dotfiles już istnieje - aktualizowanie..."
-    cd ~/.dotfiles && git pull
+  echo "Repozytorium .dotfiles już istnieje - aktualizowanie..."
+  cd ~/.dotfiles && git pull
 else
-    echo "Klonowanie repozytorium .dotfiles..."
-    git clone --depth=1 https://github.com/trebuhw/.dotfiles.git ~/.dotfiles
+  echo "Klonowanie repozytorium .dotfiles..."
+  git clone --depth=1 https://github.com/trebuhw/.dotfiles.git ~/.dotfiles
 fi
 
 # Obsługa .hydedots
 if [ -d ~/.hydedots ]; then
-    echo "Repozytorium .hydedots już istnieje - aktualizowanie..."
-    cd ~/.hydedots && git pull
+  echo "Repozytorium .hydedots już istnieje - aktualizowanie..."
+  cd ~/.hydedots && git pull
 else
-    echo "Klonowanie repozytorium .hydedots..."
-    git clone --depth=1 https://github.com/trebuhw/.hydedots.git ~/.hydedots
+  echo "Klonowanie repozytorium .hydedots..."
+  git clone --depth=1 https://github.com/trebuhw/.hydedots.git ~/.hydedots
 fi
 
 echo "Usuwanie i kopiowanie plików..."
@@ -52,7 +54,6 @@ echo "Usuwanie i kopiowanie plików..."
 [ -f ~/.bash_logout ] && rm ~/.bash_logout
 [ -f ~/.bash_profile ] && rm ~/.bash_profile
 [ -f ~/.bashrc ] && rm ~/.bashrc
-
 
 echo "Kopiowanie plików..."
 # Tworzenie katalogów docelowych jeśli nie istnieją
